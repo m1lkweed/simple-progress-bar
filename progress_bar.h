@@ -14,6 +14,8 @@
 //
 //progress_bar returns -1 for invalid locations, -2 for negative bar lengths, -3 for invalid styles, otherwise returns 0
 
+#ifndef PROGRESS_BAR_H
+#define PROGRESS_BAR_H
 #include <stdio.h>
 
 int progress_bar(unsigned short x, unsigned short y, long double length, int style, const char* color){
@@ -45,3 +47,4 @@ int progress_bar(unsigned short x, unsigned short y, long double length, int sty
 	fflush(stdout); //prevents visual errors
 	return 0;
 }
+#endif
