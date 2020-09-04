@@ -39,7 +39,7 @@ int progress_bar(unsigned short x, unsigned short y, long double length, int sty
 	case 0: while(0.5 <= length--)printf("%s",s[0]);break; //no style
 	case 1: while(1 <= length){printf("%s",h[0]);--length;}if(length >= 0.5)printf("%s",h[4]);break; //halves
 	case 2: while(1 <= length){printf("%s",s[0]);--length;}if(length >= 0.25)printf("%s",s[((int)(length*4))%4]);break; //gradient
-	case 3: while(1 <= length){printf("%s",s[0]);--length;}if(length >= 0.125)printf("%s",h[((int)(length*8))%8]);break; //eighths
+	case 3: while(1 <= length){printf("%s",h[0]);--length;}if(length >= 0.125)printf("%s",h[((int)(length*8))%8]);break; //eighths
 	default: printf(safe_exit); return -3;
 	}
 	if(style > 3)printf("\x1b[0K"); //clear line after bar
