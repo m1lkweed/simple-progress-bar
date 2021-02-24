@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-int progress_bar(const uint16_t x, const uint16_t y, long double length, int style, const char *color){
+int progress_bar(const unsigned x, const unsigned y, long double length, int style, const char *color){
 	const char *s[] = {"\xe2\x96\x88", //shades
 	                   "\xe2\x96\x91",
 	                   "\xe2\x96\x92",
@@ -31,7 +31,7 @@ int progress_bar(const uint16_t x, const uint16_t y, long double length, int sty
 	                   "\xe2\x96\x8a",
 	                   "\xe2\x96\x89"};
 	const char *safe_exit = "\x1b[u\x1b[39;49m"; //pop cursor position and reset colors
-	if((x == 0)||(y == 0))return -1; //check valid inputs
+	if((x <= 0)||(y <= 0))return -1; //check valid inputs
 	if(length < 0)return -2;
 	fprintf(stdout, "\x1b[s\x1b[%d;%dH%s", x, y, color?color:""); //push and move cursor position
 	switch(style % 4){
