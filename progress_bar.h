@@ -12,7 +12,7 @@
 // 6.) Same as 2, but clears line from end of bar
 // 7.) Same as 3, but clears line from end of bar (not supported on all terminals)
 //
-//progress_bar() returns -1 for invalid locations, -2 for negative bar lengths, -3 for invalid styles, otherwise returns 0
+// progress_bar() returns -1 for invalid locations, -2 for negative bar lengths, -3 for invalid styles, otherwise returns 0
 
 #include <stdio.h>
 #include <stdint.h>
