@@ -21,7 +21,7 @@
 #include <pthread.h>
 #include <stdbool.h>
 extern pthread_mutex_t _progress_bar_mutex;
-_Atomic bool _progress_bar_mutex_init_flag;
+extern _Atomic bool _progress_bar_mutex_init_flag;
 #endif //_REENTRANT
 
 int progress_bar(const unsigned x, const unsigned y, long double length, int style, const char *color);
@@ -33,6 +33,7 @@ int progress_bar(const unsigned x, const unsigned y, long double length, int sty
 
 #ifdef _REENTRANT
 pthread_mutex_t _progress_bar_mutex;
+_Atomic bool _progress_bar_mutex_init_flag;
 #endif //_REENTRANT
 
 int progress_bar(const unsigned x, const unsigned y, long double length, int style, const char *color){
