@@ -1,5 +1,4 @@
 // sample program for progress_bar.h
-// fills large array and shows progress
 
 #include <stdlib.h>
 #include <unistd.h>
