@@ -8,6 +8,7 @@
 #include <linux/kd.h>
 #include <sys/ioctl.h>
 
+#define PROGRESS_BAR_IMPLEMENTATION
 #include "progress_bar.h"
 
 #define RED "\x1b[31m"
