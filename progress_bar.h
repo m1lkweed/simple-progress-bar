@@ -17,6 +17,10 @@
 #ifndef PROGRESS_BAR_H_
 #define PROGRESS_BAR_H_
 
+int progress_bar(const unsigned x, const unsigned y, long double length, int style, const char *color);
+
+#ifdef PROGRESS_BAR_IMPLEMENTATION
+
 #include <stdio.h>
 #include <stdint.h>
 
@@ -50,4 +54,5 @@ int progress_bar(const unsigned x, const unsigned y, long double length, int sty
 	return 0;
 }
 
+#endif
 #endif
