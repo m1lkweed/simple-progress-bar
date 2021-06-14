@@ -17,6 +17,13 @@
 #ifndef PROGRESS_BAR_H_
 #define PROGRESS_BAR_H_
 
+#ifdef _REENTRANT
+#include <pthread.h>
+#include <stdbool.h>
+extern pthread_mutex_t _progress_bar_mutex;
+_Atomic bool _progress_bar_mutex_init_flag;
+#endif //_REENTRANT
+
 int progress_bar(const unsigned x, const unsigned y, long double length, int style, const char *color);
 
 #ifdef PROGRESS_BAR_IMPLEMENTATION
@@ -24,7 +31,19 @@ int progress_bar(const unsigned x, const unsigned y, long double length, int sty
 #include <stdio.h>
 #include <stdint.h>
 
+#ifdef _REENTRANT
+pthread_mutex_t _progress_bar_mutex;
+#endif //_REENTRANT
+
 int progress_bar(const unsigned x, const unsigned y, long double length, int style, const char *color){
+	#ifdef _REENTRANT
+	if(!_progress_bar_mutex_init_flag){
+		pthread_mutex_init(&_progress_bar_mutex, NULL);
+		_progress_bar_mutex_init_flag = 1;
+	}
+	pthread_mutex_lock(&_progress_bar_mutex);
+	#endif //_REENTRANT
+
 	const char *s[] = {"\xe2\x96\x88", //shades
 	                   "\xe2\x96\x91",
 	                   "\xe2\x96\x92",
@@ -51,6 +70,11 @@ int progress_bar(const unsigned x, const unsigned y, long double length, int sty
 	if(style > 3)fputs("\x1b[0K", stdout); //clear line after bar
 	fputs(safe_exit, stdout);
 	fflush(stdout); //prevents visual errors
+
+	#ifdef _REENTRANT
+	pthread_mutex_unlock(&_progress_bar_mutex);
+	#endif //_REENTRANT
+
 	return 0;
 }
 
